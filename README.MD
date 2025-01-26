@@ -14,6 +14,7 @@ npx create-browser-app
 You need an `OPENAI_API_KEY` and like `$1` Credit balance.
 
 - https://platform.openai.com/settings/organization/api-keys
+- https://platform.openai.com/settings/organization/billing/overview
 
 ```bash
 npm install
