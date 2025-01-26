@@ -2,9 +2,11 @@
  * @param {import("@browserbasehq/stagehand").Page} page 
  */
 export async function run(page) {
-  console.log("Navigating to Google...")
   await page.goto("https://google.com/")
-  console.log("arrived")
-  const res = await page.act("Accept all cookies")
+
+  await page.act("Accept all cookies")
+  await page.act("Click on the search bar.")
+  await page.act("Type 'Hello, World!' into the search bar")
+
   await page.close()
 }
