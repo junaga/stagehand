@@ -1,5 +1,16 @@
 import type { ConstructorParams, LogLine } from "@browserbasehq/stagehand";
 
+/**
+ * Get an environment variable and throw an error if it's not found
+ * @param name - The name of the environment variable
+ * @returns The value of the environment variable
+ */
+function getEnvVar(name: string): string | undefined {
+  const value = process.env[name];
+  if (value) return value;
+  throw new Error(`${name} not found in environment variables`);
+}
+
 export default {
   modelName: "gpt-4o-mini", // "o1-mini"
   headless: false /* Run browser in headless mode */,
@@ -7,7 +18,7 @@ export default {
   domSettleTimeoutMs: 30_000 /* Timeout for DOM to settle in milliseconds */,
   enableCaching: false /* Enable caching functionality */,
   env: "LOCAL",
-  modelClientOptions: { apiKey: process.env.OPENAI_API_KEY },
+  modelClientOptions: { apiKey: getEnvVar("OPENAI_API_KEY") },
   logger: (message: LogLine) => console.log(logLineToString(message)) /* Custom logging function */,
 } satisfies ConstructorParams;
 
