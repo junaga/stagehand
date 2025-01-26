@@ -1,25 +1,15 @@
 import type { ConstructorParams, LogLine } from "@browserbasehq/stagehand";
 
-/** @type {ConstructorParams} */
 export default {
-  env: "LOCAL",
-  apiKey: process.env.BROWSERBASE_API_KEY /* API key for authentication */,
-  projectId: process.env.BROWSERBASE_PROJECT_ID /* Project identifier */,
-  debugDom: true /* Enable DOM debugging features */,
+  modelName: "gpt-4o-mini", // "o1-mini"
   headless: false /* Run browser in headless mode */,
-  logger: (message: LogLine) =>
-    console.log(logLineToString(message)) /* Custom logging function */,
+  debugDom: true /* Enable DOM debugging features */,
   domSettleTimeoutMs: 30_000 /* Timeout for DOM to settle in milliseconds */,
-  browserbaseSessionCreateParams: {
-    projectId: process.env.BROWSERBASE_PROJECT_ID!,
-  },
   enableCaching: false /* Enable caching functionality */,
-  browserbaseSessionID: undefined /* Session ID for resuming Browserbase sessions */,
-  modelName: "gpt-4o-mini" /* Name of the model to use */,
-	modelClientOptions: {
-    apiKey: process.env.OPENAI_API_KEY,
-  } /* Configuration options for the model client */,
-};
+  env: "LOCAL",
+  modelClientOptions: { apiKey: process.env.OPENAI_API_KEY },
+  logger: (message: LogLine) => console.log(logLineToString(message)) /* Custom logging function */,
+} satisfies ConstructorParams;
 
 /**
  * Custom logging function that you can use to filter logs.
