@@ -1,7 +1,6 @@
 import { Stagehand } from "@browserbasehq/stagehand"
 import { getEnvVar } from "./lib.js"
-import { run } from "./src/browserbase.js"
-// import { run } from "./src/google.js"
+import { run } from "./src/google.js"
 
 /** @type {ConstructorParams} */
 const config =  {

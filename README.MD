@@ -8,6 +8,8 @@ npm --version # v10
 npx create-browser-app
 ```
 
+- [examples](https://github.com/browserbase/stagehand/tree/main/examples)
+
 ## get a model
 
 ```bash
