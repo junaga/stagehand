@@ -1,16 +1,15 @@
-import type { ConstructorParams, LogLine } from "@browserbasehq/stagehand";
-
 /**
  * Get an environment variable and throw an error if it's not found
  * @param name - The name of the environment variable
  * @returns The value of the environment variable
  */
-function getEnvVar(name: string): string | undefined {
+function getEnvVar(name) {
   const value = process.env[name];
   if (value) return value;
   throw new Error(`${name} not found in environment variables`);
 }
 
+/** @type {ConstructorParams} */
 export default {
   modelName: "gpt-4o-mini", // "o1-mini"
   headless: false /* Run browser in headless mode */,
@@ -19,8 +18,8 @@ export default {
   enableCaching: false /* Enable caching functionality */,
   env: "LOCAL",
   modelClientOptions: { apiKey: getEnvVar("OPENAI_API_KEY") },
-  logger: (message: LogLine) => console.log(logLineToString(message)) /* Custom logging function */,
-} satisfies ConstructorParams;
+  logger: (message) => console.log(logLineToString(message)) /* Custom logging function */,
+}
 
 /**
  * Custom logging function that you can use to filter logs.
@@ -49,7 +48,7 @@ export default {
  * }
  * ```
  */
-export function logLineToString(logLine: LogLine): string {
+export function logLineToString(logLine) {
   // If you want more detail, set this to false. However, this will make the logs
   // more verbose and harder to read.
   const HIDE_AUXILIARY = true;

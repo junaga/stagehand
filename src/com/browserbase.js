@@ -1,63 +1,28 @@
-/**
- * 🤘 Welcome to Stagehand!
- *
- * TO RUN THIS PROJECT:
- * ```
- * npm install
- * npm run start
- * ```
- *
- * To edit config, see `stagehand.config.ts`
- *
- * In this quickstart, we'll be automating a browser session to show you the power of Playwright and Stagehand's AI features.
- *
- * 1. Go to https://docs.browserbase.com/
- * 2. Use `extract` to find information about the quickstart
- * 3. Use `observe` to find the links under the 'Guides' section
- * 4. Use Playwright to click the first link. If it fails, use `act` to gracefully fallback to Stagehand AI.
- */
-
-import { Page, BrowserContext, Stagehand } from "@browserbasehq/stagehand";
 import { z } from "zod";
 import chalk from "chalk";
 import boxen from "boxen";
-import dotenv from "dotenv";
 
-dotenv.config();
+function announce(message, title) {
+  console.log(
+    boxen(message, {
+      padding: 1,
+      margin: 3,
+      title: title || "Stagehand",
+    })
+  );
+}
 
-export async function main({
-  page,
-  context,
-  stagehand,
-}: {
-  page: Page; // Playwright Page with act, extract, and observe methods
-  context: BrowserContext; // Playwright BrowserContext
-  stagehand: Stagehand; // Stagehand instance
-}) {
+export async function run(page) {
   console.log(
     [
-      `🤘 ${chalk.yellow("Welcome to Stagehand!")}`,
-      "",
-      "Stagehand is a tool that allows you to automate browser interactions.",
-      "Watch as this demo automatically performs the following steps:",
-      "",
-      `📍 Step 1: Stagehand will auto-navigate to ${chalk.blue(
-        "https://docs.browserbase.com/"
-      )}`,
-      `📍 Step 2: Stagehand will use AI to ${chalk.green(
-        "extract"
-      )} information about the quickstart`,
-      `📍 Step 3: Stagehand will use AI to ${chalk.green(
-        "observe"
-      )} and identify links in the 'Guides' section`,
-      `📍 Step 4: Stagehand will attempt to click the first link using Playwright, with ${chalk.green(
-        "act"
-      )} as an AI fallback`,
+      `📍 Step 1: Stagehand will navigate to ${chalk.blue("https://docs.browserbase.com/")}`,
+      `📍 Step 2: Stagehand will use AI to ${chalk.green("extract")} information from 'Quickstart'`,
+      `📍 Step 3: Stagehand will use AI to ${chalk.green("observe")} links in the 'Guides' section`,
+      `📍 Step 4: Stagehand will attempt to click the first link using Playwright, with ${chalk.green("act")} as an AI fallback`,
     ].join("\n")
   );
 
-  //   You can use the `page` instance to write any Playwright code
-  //   For more info: https://playwright.dev/docs/pom
+  // https://playwright.dev/docs/pom
   await page.goto("https://docs.browserbase.com/");
 
   const description = await page.extract({
@@ -70,6 +35,7 @@ export async function main({
       description: z.string(),
     }),
   });
+
   announce(
     `The ${chalk.bgYellow(description.title)} is at: ${chalk.bgYellow(
       chalk.blue(description.link)
@@ -130,9 +96,6 @@ export async function main({
     );
   }
 
-  //   Close the browser
-  await stagehand.close();
-
   console.log(
     [
       "To recap, here are the steps we took:",
@@ -160,15 +123,5 @@ export async function main({
         "act"
       )} to gracefully fallback to Stagehand AI.`,
     ].join("\n\n")
-  );
-}
-
-function announce(message: string, title?: string) {
-  console.log(
-    boxen(message, {
-      padding: 1,
-      margin: 3,
-      title: title || "Stagehand",
-    })
   );
 }
