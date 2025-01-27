@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { sleep } from "../../lib.js"
+import { sleep } from "../lib/shared.js"
 
 const RULES = `
   1. Keeping high value tiles in corners (bottom left, bottom right, top left, top right)
