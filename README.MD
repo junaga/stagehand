@@ -32,3 +32,8 @@ rm models.log
 ```
 
 for example `o1-preview`, save it in `./main.js#config.modelName`
+
+## todo
+
+use `ollama` instead of OpenAI API
+https://github.com/browserbase/playbook/blob/main/examples/ollama_client.ts
