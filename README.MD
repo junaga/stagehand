@@ -1,15 +1,18 @@
 # Welcome to Stagehand [--github](https://github.com/browserbase/stagehand)
 
-[Stagehand](https://www.stagehand.dev/) is an SDK for automating browsers. It's built on top of [Playwright](https://playwright.dev/) and provides a higher-level API for better debugging and AI fail-safes. [examples](https://github.com/browserbase/stagehand/tree/main/examples).
+[Stagehand](https://www.stagehand.dev/) is a library for automating browsers. It's built on top of [Playwright](https://playwright.dev/) and provides a higher-level API for better debugging and AI fail-safes.
 
 ```bash
-# installation from junaga
+# setup from junaga
 node --version # v23
 npm --version # v10
 npx create-browser-app
 ```
 
-## setup
+- [examples](https://github.com/browserbase/stagehand/tree/main/examples)
+- [best practices](https://docs.stagehand.dev/get_started/best_practices)
+
+## install
 
 You need an `OPENAI_API_KEY` and like `$1` Credit balance.
 
@@ -19,8 +22,10 @@ You need an `OPENAI_API_KEY` and like `$1` Credit balance.
 ```bash
 npm install
 export OPENAI_API_KEY="<YOUR API KEY>"
-npm start
+node ./main.js
 ```
+
+running `./main.js` costs about `$0.01`.
 
 ## list models
 
@@ -31,9 +36,12 @@ curl https://api.openai.com/v1/models -H "Authorization: Bearer $OPENAI_API_KEY"
 rm models.log
 ```
 
-for example `o1-preview`, save it in `./main.js#config.modelName`
+for example `o1-mini`, save it in `./main.js#config.modelName`
+
+## development
+
+The Stagehand APIs: `act`, `extract`, and `observe` expect [atomic, precise and stupid `prompts`](https://docs.stagehand.dev/get_started/best_practices#dont).
 
 ## todo
 
-use `ollama` instead of OpenAI API
-https://github.com/browserbase/playbook/blob/main/examples/ollama_client.ts
+- [`ollama` instead of OpenAI API](https://github.com/browserbase/playbook/blob/main/examples/ollama_client.ts)
