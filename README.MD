@@ -45,3 +45,52 @@ The Stagehand APIs: `act`, `extract`, and `observe` expect [atomic, precise and 
 ## todo
 
 - [`ollama` instead of OpenAI API](https://github.com/browserbase/playbook/blob/main/examples/ollama_client.ts)
+
+## working with NIK
+
+### 2025-03-02
+
+- VPS on https://contabo.com/en/
+
+```
+# from @niklavs on discord on 2025-02-03
+NIK_SERVER_HOSTNAME="<ip or domain>"
+NIK_SERVER_USERNAME="<linux user>"
+NIK_SERVER_PASSWORD="<linux user password>"
+```
+
+- `+66` phone number on https://onlinesim.io/
+- email on `gmail.com`
+- `@thefunnySJ` Twitter account from email and phone number
+
+### get to the server
+
+```bash
+sudo apt update
+sudo apt -qq upgrade -y
+sudo apt -qq autoremove -y
+sudo apt -qq install -y ssh sshfs
+
+# set credentials
+export NIK_SERVER_HOSTNAME="<ip or domain>"
+export NIK_SERVER_USERNAME="<linux user>"
+
+# make sure SSH public key `~/.ssh/*.pub exist` exists
+ssh-keygen -t rsa -b 4096 -C "$USER@$HOSTNAME"
+
+# upload public SSH key to login without password in the future
+ssh-copy-id -o StrictHostKeyChecking=accept-new $NIK_SERVER_USERNAME@$NIK_SERVER_HOSTNAME
+# type in `NIK_SERVER_PASSWORD`
+
+# test connection
+ssh $NIK_SERVER_USERNAME@$NIK_SERVER_HOSTNAME
+ls ~
+exit
+
+# mount server filesystem
+mkdir -p ./remote/
+sshfs $NIK_SERVER_USERNAME@$NIK_SERVER_HOSTNAME:/root/twitterbot/ ./remote/
+
+# unmount server filesystem
+fusermount --unmount ./remote/ && rm -fr ./remote/
+```

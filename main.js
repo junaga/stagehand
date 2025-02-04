@@ -1,4 +1,5 @@
-import { run } from "./src/meisterbetten.js"
+// import { run } from "./src/meisterbetten.js"
+import { run } from "./src/twitter.js"
 import { Stagehand } from "@browserbasehq/stagehand"
 import { getEnvVar } from "./src/lib/node.js"
 
@@ -7,6 +8,7 @@ const config =  {
   modelClientOptions: { apiKey: getEnvVar("OPENAI_API_KEY") },
   modelName: "o1-mini", // or "o1-mini"
 
+  enableCaching: true,
   env: "LOCAL",
   verbose: 1, /* Logging verbosity level (0=quiet, 1=normal, 2=verbose) */
   headless: false /* Run browser in headless mode */,
