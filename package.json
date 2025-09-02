@@ -1,15 +1,14 @@
 {
   "type": "module",
   "scripts": {
-    "start": "node ./main.js",
-    "postinstall": "playwright install"
+    "start": "node main.js",
+    "postinstall": "playwright install --with-deps"
   },
   "dependencies": {
-    "@browserbasehq/sdk": "latest",
-    "@browserbasehq/stagehand": "latest",
-    "@playwright/test": "^1.49.1",
+    "@browserbasehq/stagehand": "^2.4.4",
     "boxen": "^8.0.1",
     "chalk": "^5.3.0",
-    "zod": "^3.22.4"
+    "playwright": "^1.55.0",
+    "zod": "^3.25.76"
   }
 }
