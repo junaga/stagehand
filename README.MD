@@ -1,96 +1,66 @@
-# Welcome to Stagehand [--github](https://github.com/browserbase/stagehand)
+- [openrouter.ai](https://openrouter.ai)
+- [playwright.dev](https://playwright.dev)
+- [stagehand.dev](https://www.stagehand.dev)
 
-[Stagehand](https://www.stagehand.dev/) is a library for automating browsers. It's built on top of [Playwright](https://playwright.dev/) and provides a higher-level API for better debugging and AI fail-safes.
+Stagehand is a library for automating browsers; It's OpenAI + Playwright!
 
-```bash
-# setup from junaga
-node --version # v23
-npm --version # v10
-npx create-browser-app
-```
+# Stagehand
 
-- [examples](https://github.com/browserbase/stagehand/tree/main/examples)
-- [best practices](https://docs.stagehand.dev/get_started/best_practices)
+> Why Developers Choose Stagehand [--stagehand.dev](https://docs.stagehand.dev/first-steps/introduction#why-developers-choose-stagehand)
+> 
+> - Precise Control: Mix AI-powered actions with deterministic code. You decide exactly how much AI to use.
+> - Actually Repeatable: Save and replay actions exactly. No more “it worked on my machine” with browser automations.
+> - Maintainable at Scale: One script can automate multiple websites. When sites change, your automations adapt.
+> - Composable Tools: Choose your level of automation with Act, Extract, Observe, and Agent.
 
 ## install
 
-You need an `OPENAI_API_KEY` and like `$1` Credit balance.
+```sh
+# compat env
+uname # Linux
+node --version # 18
+npm --version # 9
+LIB="/usr/local/lib"
 
-- https://platform.openai.com/settings/organization/api-keys
-- https://platform.openai.com/settings/organization/billing/overview
-
-```bash
-npm install
-export OPENAI_API_KEY="<YOUR API KEY>"
-node ./main.js
+# inst deps
+PLAYWRIGHT_BROWSERS_PATH="/usr/local/lib/playwright" npm install
 ```
 
-running `./main.js` costs about `$0.01`.
-
-## list models
-
-```bash
-export OPENAI_API_KEY="<YOUR API KEY>"
-curl https://api.openai.com/v1/models -H "Authorization: Bearer $OPENAI_API_KEY" > models.log
-# copy a model
-rm models.log
+```sh
+# we got browsers!
+export PLAYWRIGHT_BROWSERS_PATH="/usr/local/lib/playwright"
+npx playwright cr youtube.com
+npx playwright ff youtube.com
+npx playwright wk youtube.com
 ```
 
-for example `o1-mini`, save it in `./main.js#config.modelName`
+## config
 
-## development
+1. Sign up https://openrouter.ai
+2. Go to https://openrouter.ai/settings/credits
+3. Click **Add Credits**
+4. Enter **Card**; **Purchase** `5` Credits
+5. Go to https://openrouter.ai/settings/keys
+6. Click **Create API Key**
+7. Name: `stagehand`; Credit limit: `5`
+8. Copy the key
+9. Create `.env` and paste the key
 
-The Stagehand APIs: `act`, `extract`, and `observe` expect [atomic, precise and stupid `prompts`](https://docs.stagehand.dev/get_started/best_practices#dont).
+```sh
+# .env
+OPENAI_API="https://openrouter.ai/api/v1"
+OPENAI_API_KEY="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"
+OPENAI_API_MODEL="gpt-4o" # https://openrouter.ai/models
 
-## todo
-
-- [`ollama` instead of OpenAI API](https://github.com/browserbase/playbook/blob/main/examples/ollama_client.ts)
-
-## working with NIK
-
-### 2025-03-02
-
-- VPS on https://contabo.com/en/
-
-```
-# from @niklavs on discord on 2025-02-03
-NIK_SERVER_HOSTNAME="<ip or domain>"
-NIK_SERVER_USERNAME="<linux user>"
-NIK_SERVER_PASSWORD="<linux user password>"
+PLAYWRIGHT_BROWSERS_PATH="/usr/local/lib/playwright"
 ```
 
-- `+66` phone number on https://onlinesim.io/
-- email on `gmail.com`
-- `@thefunnySJ` Twitter account from email and phone number
+## run
 
-### get to the server
+running `hello.js` costs about `$0.01`.
 
-```bash
-sudo apt update
-sudo apt -qq upgrade -y
-sudo apt -qq autoremove -y
-sudo apt -qq install -y ssh sshfs
-
-# set credentials
-export NIK_SERVER_HOSTNAME="<ip or domain>"
-export NIK_SERVER_USERNAME="<linux user>"
-
-# make sure SSH public key `~/.ssh/*.pub exist` exists
-ssh-keygen -t rsa -b 4096 -C "$USER@$HOSTNAME"
-
-# upload public SSH key to login without password in the future
-ssh-copy-id -o StrictHostKeyChecking=accept-new $NIK_SERVER_USERNAME@$NIK_SERVER_HOSTNAME
-# type in `NIK_SERVER_PASSWORD`
-
-# test connection
-ssh $NIK_SERVER_USERNAME@$NIK_SERVER_HOSTNAME
-ls ~
-exit
-
-# mount server filesystem
-mkdir -p ./remote/
-sshfs $NIK_SERVER_USERNAME@$NIK_SERVER_HOSTNAME:/root/twitterbot/ ./remote/
-
-# unmount server filesystem
-fusermount --unmount ./remote/ && rm -fr ./remote/
+```sh
+set -a
+. .env
+node src/hello.js
 ```
