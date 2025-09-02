@@ -1,4 +1,4 @@
-import { goto } from "./lib/main.js"
+import { goto } from "./main.js"
 /** @typedef {import("@browserbasehq/stagehand").Page} Page */
 
 function queryProducts() {

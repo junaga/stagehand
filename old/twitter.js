@@ -1,5 +1,5 @@
-import { goto } from "./lib/main.js"
-import { humanClick, humanType, sleep } from "./lib/shared.js"
+import { goto } from "./main.js"
+import { humanClick, humanType, sleep } from "./shared.js"
 /** @typedef {import("@browserbasehq/stagehand").Page} Page */
 
 function queryProducts() {

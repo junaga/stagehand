@@ -1,4 +1,4 @@
-import { sleep } from "./lib/shared.js"
+import { sleep } from "./shared.js"
 import { z } from "zod"
 
 /**
