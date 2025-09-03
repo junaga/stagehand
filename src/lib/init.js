@@ -1,5 +1,5 @@
 import { Stagehand } from "@browserbasehq/stagehand"
-import { envar } from "./lib/node.js"
+import { envar } from "./node.js"
 
 const OPENAI_API = envar("OPENAI_API")
 const OPENAI_API_KEY = envar("OPENAI_API_KEY")

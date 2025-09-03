@@ -1,4 +1,4 @@
-import { init, estimate } from "./init.js"
+import { init, estimate } from "./lib/init.js"
 
 async function main() {
   const { browser, pricing } = await init()
