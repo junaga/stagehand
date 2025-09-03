@@ -1,7 +1,7 @@
 import { init, estimate } from "./lib/init.js"
 
 async function main() {
-  const { browser, pricing } = await init()
+  const { browser, pricing } = await init({ headless: false })
 
   const tab = browser.page
   await tab.goto("https://stagehand.dev")

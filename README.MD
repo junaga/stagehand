@@ -48,9 +48,9 @@ npx playwright wk youtube.com
 
 ```sh
 # .env
-OPENAI_API="https://openrouter.ai/api/v1"
-OPENAI_API_KEY="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"
-OPENAI_API_MODEL="openai/gpt-4o" # https://openrouter.ai/models
+LLM_API="https://openrouter.ai/api/v1"
+LLM_API_KEY="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"
+LLM_API_MODEL="openai/gpt-4o" # https://openrouter.ai/models
 
 PLAYWRIGHT_BROWSERS_PATH="/usr/local/lib/playwright"
 ```
@@ -63,13 +63,13 @@ running `hello.js` with `gpt-4o-mini` costs about `$0.003`, _less than one cent_
 set -a
 
 . .env
-OPENAI_API_MODEL="openai/gpt-4o-mini"
+LLM_API_MODEL="openai/gpt-4o-mini"
 node src/hello.js
 ```
 
 ## bug
 
-in `npm:stagehand@2.4.4` supported models are hardcoded! That means `OPENAI_API_MODEL` can only be a `AvailableModelSchema` value, not any model in https://openrouter.ai/models. There are pull requests incoming to fix this.
+in `npm:stagehand@2.4.4` supported models are hardcoded! That means `LLM_API_MODEL` can only be a `AvailableModelSchema` value, not any model in https://openrouter.ai/models. There are pull requests incoming to fix this.
 
 ```js
 import { AvailableModelSchema } from "@browserbasehq/stagehand"
